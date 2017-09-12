@@ -1,13 +1,24 @@
 from django.db import models
 
 
-class Entity(models.Model):
+class BaseClass(models.Model):
     name = models.CharField(max_length=30)
-    location = models.CharField(max_length=120)
-    user = models.ForeignKey('auth.User')
 
     def __str__(self):
         return self.name
+
+
+class Entity(BaseClass):
+    location = models.CharField(max_length=120)
+    user = models.ForeignKey('auth.User')
+
+
+class Species(BaseClass):
+    pass
+
+
+class Breed(BaseClass):
+    species_field = models.ForeignKey(Species, on_delete=models.CASCADE)
 
 
 class Animal(models.Model):
@@ -26,8 +37,7 @@ class Animal(models.Model):
             )
     sex = models.CharField(max_length=2, choices=SEX, default='M')
     registration = models.DateTimeField(auto_now_add=True)
-    classification_1 = models.CharField(max_length=30)
-    classification_2 = models.CharField(max_length=30, null=True, blank=True)
+    breed_field = models.ForeignKey(Breed, on_delete=models.CASCADE)
     pic = models.ImageField()
     bio = models.TextField(null=True, blank=True)
 
