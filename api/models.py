@@ -49,7 +49,7 @@ class Animal(models.Model):
 
 
 class MedicalRecord(models.Model):
-    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    animal = models.OneToOneField(Animal, on_delete=models.CASCADE, primary_key=True)
     vaccines = models.TextField(max_length=256, null=True, blank=True)
     castrated = models.NullBooleanField(null=True, blank=True, default=False)
     chip = models.NullBooleanField(null=True, blank=True, default=False)
