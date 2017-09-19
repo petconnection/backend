@@ -42,11 +42,10 @@ class Animal(models.Model):
     bio = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        if self.name:
-            return self.name
+        name = self.name if self.name else ""
         breed_field = self.breed_field
         species_field = breed_field.species_field
-        return "{animal_id}: {breed} {species}".format(animal_id=self.id, breed=breed_field, species=species_field)
+        return "{name} {animal_id}: {breed} {species}".format(name=name, animal_id=self.id, breed=breed_field, species=species_field)
 
 
 class MedicalRecord(models.Model):
