@@ -38,7 +38,7 @@ class Animal(models.Model):
     sex = models.CharField(max_length=2, choices=SEX, default='M')
     registration = models.DateTimeField(auto_now_add=True)
     breed_field = models.ForeignKey(Breed, on_delete=models.CASCADE)
-    pic = models.ImageField()
+    pic = models.ImageField(null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
 
     def __str__(self):
