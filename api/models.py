@@ -38,15 +38,18 @@ class Animal(models.Model):
     sex = models.CharField(max_length=2, choices=SEX, default='M')
     registration = models.DateTimeField(auto_now_add=True)
     breed_field = models.ForeignKey(Breed, on_delete=models.CASCADE)
-    pic = models.ImageField()
+    pic = models.ImageField(null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        name = self.name if self.name else ""
+        breed_field = self.breed_field
+        species_field = breed_field.species_field
+        return "{name} {animal_id}: {breed} {species}".format(name=name, animal_id=self.id, breed=breed_field, species=species_field)
 
 
 class MedicalRecord(models.Model):
-    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    animal = models.OneToOneField(Animal, on_delete=models.CASCADE, primary_key=True)
     vaccines = models.TextField(max_length=256, null=True, blank=True)
     castrated = models.NullBooleanField(null=True, blank=True, default=False)
     chip = models.NullBooleanField(null=True, blank=True, default=False)
