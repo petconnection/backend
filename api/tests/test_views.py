@@ -58,9 +58,14 @@ class EntityTest(TestCase):
         self.assertEquals(response.status_code, 200)
 
         data = loads(response.content)
+        self.assertTrue(type(data['entities']) is list)
+        
+        for e in data['entities']:
+            self.__assert_entity(e)
 
-        for f in ['name','location']:
-            self.assertTure(f in animal)
-            self.assertTrue(animal[f] is not None)
-
+    def __assert_entity(self, entity):
+        fields = ['name', 'location']       
+        for f in fields:
+            self.assertTure(f in entity)
+            self.assertTrue(entity[f] is not None)
 
