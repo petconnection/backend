@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from random import randint
 
-# Create your views here.
+
+def login(request):
+    return render(request, 'backoffice/login.html', {})
+
