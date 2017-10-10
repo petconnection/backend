@@ -123,4 +123,4 @@ STATIC_URL = '/static/'
 
 # AUTH settings (custom)
 
-LOGIN_REDIRECT = 'backoffice_home'
+LOGIN_REDIRECT_URL = 'backoffice_home'

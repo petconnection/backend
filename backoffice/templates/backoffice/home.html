@@ -1,0 +1,7 @@
+
+<h1>Home</h1>
+
+  <h2>Hello {{ user.get_username }}</h2>
+
+{% url 'backoffice_logout' as logout_url %}
+<a href="{{ logout_url }}">Logout</a>
