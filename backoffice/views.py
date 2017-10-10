@@ -1,8 +1,7 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 
-def login(request):
-    return render(request, 'backoffice/login.html', {})
-
+@login_required(login_url='backoffice_login')
 def home(request):
     return render(request, 'backoffice/home.html', {})
