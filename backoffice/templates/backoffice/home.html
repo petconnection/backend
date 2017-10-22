@@ -3,10 +3,16 @@
 {% block title %}Home{% endblock %}
 
 {% block section %}
-<h1>Home</h1>
+<h1>Animals</h1>
 
-  <h2>Hello {{ user.get_username }}</h2>
+<ul>
+  {% for animal in animals %}
+    <li>
+      {{  animal.name }}
+    </li>
+  {% endfor %}
 
-{% url 'backoffice_logout' as logout_url %}
-<a href="{{ logout_url }}">Logout</a>
+</ul>
+
+
 {% endblock %}
