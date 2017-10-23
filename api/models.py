@@ -11,6 +11,7 @@ class BaseClass(models.Model):
 class Entity(BaseClass):
     location = models.CharField(max_length=120)
     user = models.ForeignKey('auth.User')
+    email = models.EmailField(max_length=60)
 
 
 class Species(BaseClass):
