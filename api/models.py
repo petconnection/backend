@@ -1,4 +1,5 @@
 from django.db import models
+from .validators import phoneregex
 
 
 class BaseClass(models.Model):
@@ -12,6 +13,7 @@ class Entity(BaseClass):
     location = models.CharField(max_length=120)
     user = models.ForeignKey('auth.User')
     email = models.EmailField(max_length=60)
+    phone = models.CharField(max_length=9, validators=[phoneregex])
 
 
 class Species(BaseClass):
