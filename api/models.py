@@ -24,7 +24,7 @@ class Breed(BaseClass):
 class Animal(models.Model):
     name = models.CharField(max_length=30, null=True, blank=True)
     entity = models.ForeignKey(Entity, on_delete=models.CASCADE)
-    weigth = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     SIZES = (
             ('S', 'small'),
             ('M', 'medium'),
