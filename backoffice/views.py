@@ -3,10 +3,10 @@ from django.contrib.auth.decorators import login_required
 from api.models import Animal, Entity
 
 
-@login_required(login_url='backoffice_login')
+@login_required(login_url='login')
 def home(request):
     context = {}
-    user_entity = Entity.objects.filter(user=request.user)[0]
-    context['animals'] = Animal.objects.filter(entity=user_entity)
+    # user_entity = Entity.objects.filter(user=request.user)[0]
+    # context['animals'] = Animal.objects.filter(entity=user_entity)
 
-    return render(request, 'backoffice/home.html', context)
+    return render(request, 'home.html', context)
