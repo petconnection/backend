@@ -102,3 +102,6 @@ ENV/
 
 #database ignore
 *.sqlite3
+
+#Intellij Pycharm
+.idea/
