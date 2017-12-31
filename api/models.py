@@ -41,6 +41,12 @@ class Animal(models.Model):
     pic = models.ImageField(null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
 
+    def medical_record(self):
+        try:
+            return MedicalRecord.objects.get(animal=self.id)
+        except MedicalRecord.DoesNotExist:
+            return None
+
     def __str__(self):
         name = self.name if self.name else ""
         breed_field = self.breed_field
