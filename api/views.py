@@ -1,5 +1,4 @@
 from rest_framework import viewsets
-from api.models import Animal
 from api.serializers import *
 from rest_framework.permissions import AllowAny
 
@@ -19,4 +18,16 @@ class EntityViewSet(viewsets.ReadOnlyModelViewSet):
 class MedicalRecordViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = MedicalRecord.objects.all()
     serializer_class = MedicalRecordSerializer
+    permission_classes = [AllowAny]
+
+
+class SpeciesViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Species.objects.all()
+    serializer_class = SpeciesSerializer
+    permission_classes = [AllowAny]
+
+
+class BreedViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Breed.objects.all()
+    serializer_class = BreedSerializer
     permission_classes = [AllowAny]

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import Animal, Entity, MedicalRecord
+from api.models import Animal, Entity, MedicalRecord, Species, Breed
 
 
 class MedicalRecordSerializer(serializers.ModelSerializer):
@@ -22,4 +22,16 @@ class EntitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Entity
+        fields = '__all__'
+
+
+class SpeciesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Species
+        fields = '__all__'
+
+
+class BreedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Breed
         fields = '__all__'
