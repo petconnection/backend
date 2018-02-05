@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api'
+    'api',
+    'backoffice'
 ]
 
 MIDDLEWARE = [
@@ -118,4 +119,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+ENV_PATH = os.path.abspath(os.path.dirname(__file__))
+
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(ENV_PATH, 'static/')
+
+MEDIA_ROOT = os.path.join(ENV_PATH, 'media/')
+MEDIA_URL = 'media/'
+
+# AUTH settings (custom)
+
+LOGIN_REDIRECT_URL = 'home'
