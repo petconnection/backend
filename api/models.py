@@ -47,6 +47,14 @@ class Animal(models.Model):
         species_field = breed_field.species_field
         return "{name} {animal_id}: {breed} {species}".format(name=name, animal_id=self.id, breed=breed_field, species=species_field)
 
+    @property
+    def medical_record(self):
+        return MedicalRecord.objects.get(animal=self.id)
+    
+    @property
+    def species(self):
+        return self.breed_field.species_field
+        
 
 class MedicalRecord(models.Model):
     animal = models.OneToOneField(Animal, on_delete=models.CASCADE, primary_key=True)
