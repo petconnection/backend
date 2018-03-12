@@ -1,47 +1,60 @@
-<style>
-.mdl-card__title {
-  color: #fff;
-  height: 176px;
-}
-
-.mdl-card__menu {
-  color: #fff;
-}
-</style>
 
 <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
   <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
     <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+        {% if animal.name %}
       <h2 class="mdl-card__title-text">{{ animal.name }}</h2>
+      {% endif %}
     </div>
+    {% if animal.bio %}
     <div class="mdl-card__supporting-text mdl-color-text--grey-600">
       {{ animal.bio }}
     </div>
+    {% endif %}
+    {% if animal.medical_record.comments %}
+    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+      {{ animal.medical_record.comments }}
+    </div>
+    {% endif %}
+    
     <div class="mdl-card__actions mdl-card--border">
+        <span class="mdl-chip">
+            <span class="mdl-chip__text">{{ animal.breed_field }}</span>
+        </span>
         <a id="{{ animal.id }}-date" class="mdl-button mdl-button--icon">
             <i class="material-icons">event</i>
             <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="{{ animal.id }}-date">
                 {{ animal.registration }}
             </div>
         </a>
+        
+        {% if animal.medical_record.chip %}
         <a id="{{ animal.id }}-chip" class="mdl-button mdl-button--icon">
           <i class="material-icons">memory</i>
           <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="{{ animal.id }}-chip">
               Chip
           </div>
         </a>
+        {% endif %}
+        
+        {% if  animal.medical_record.vaccinated %}
         <a id="{{ animal.id }}-vaccinated" class="mdl-button mdl-button--icon">
           <i class="material-icons">verified_user</i>
           <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="{{ animal.id }}-vaccinated">
               Vaccinated
           </div>
         </a>
+        {% endif %}
+        
+        {% if animal.medical_record.castrated %}
         <a id="{{ animal.id }}-castrated" class="mdl-button mdl-button--icon">
           <i class="material-icons">clear</i>
           <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="{{ animal.id }}-castrated">
               Castrated
           </div>
         </a>
+        {% endif %}
+        
     </div>
     <div class="mdl-card__menu">
     <button id="{{ animal.id }}-edit" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
