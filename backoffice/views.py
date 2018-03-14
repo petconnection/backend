@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from api.models import *
+import api.models as models
 from .forms import AnimalForm
 from django.utils import timezone
 from django.http import JsonResponse as json
@@ -10,22 +10,22 @@ from django.http import JsonResponse as json
 def home(request):
     from django.contrib.auth import authenticate
     context = {}
-    user_entity = Entity.objects.get(user=request.user)
-    context['animals'] = Animal.objects.filter(entity=user_entity)
-    context['species'] = Species.objects.all()
+    user_entity = models.Entity.objects.get(user=request.user)
+    context['animals'] = models.Animal.objects.filter(entity=user_entity)
+    context['species'] = models.Species.objects.all()
     
     if request.method == 'POST':
         form = AnimalForm(request.POST)
         if form.is_valid():
             r_breed = request.POST.get('breed')
             print(request.POST)
-            species = Species.objects.get(pk=request.POST['species'])
+            species = models.Species.objects.get(pk=request.POST['species'])
             if r_breed:
-                breed = Breed.objects.get_or_create(name=r_breed, species_field=species)[0]
+                breed = models.Breed.objects.get_or_create(name=r_breed, species_field=species)[0]
             else: 
-                breed = Breed.objects.get(name='Unknown', species_field=species)
+                breed = models.Breed.objects.get(name='Unknown', species_field=species)
             
-            animal = Animal(
+            animal = models.Animal(
                 name = request.POST.get('name'),
                 entity = user_entity,
                 weight = request.POST.get('weight'),
@@ -38,7 +38,7 @@ def home(request):
             
             animal.save()
             
-            md_record = MedicalRecord(
+            md_record = models.MedicalRecord(
                 animal = animal,
                 vaccines = request.POST.get('vaccines'),
                 castrated = request.POST.get('is-castrated') is not None,
