@@ -9,12 +9,16 @@ class MedicalRecordSerializer(serializers.ModelSerializer):
 
 
 class AnimalSerializer(serializers.ModelSerializer):
-    breed_field = serializers.ReadOnlyField(source='breed_field.name')
+    breed = serializers.SerializerMethodField('get_breed_field')
     medical_record = MedicalRecordSerializer(read_only=True)
 
     class Meta:
         model = Animal
-        fields = '__all__'
+        exclude = ['breed_field']
+
+    @staticmethod
+    def get_breed_field(obj):
+        return obj.breed_field.id
 
 
 class EntitySerializer(serializers.ModelSerializer):
