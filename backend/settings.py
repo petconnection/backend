@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'api'
 ]
 
@@ -46,8 +47,9 @@ REST_FRAMEWORK = {
             'rest_framework.permissions.IsAdminUser',
             ],
         'DEFAULT_PAGINATION_CLASS': 'api.pagination.CustomPagination',
-        'PAGE_SIZE': 25
-        }
+        'PAGE_SIZE': 25,
+        'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
