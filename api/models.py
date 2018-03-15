@@ -43,9 +43,9 @@ class Animal(models.Model):
 
     def __str__(self):
         name = self.name if self.name else ""
-        breed_field = self.breed_field
-        species_field = breed_field.species_field
-        return "{name} {animal_id}: {breed} {species}".format(name=name, animal_id=self.id, breed=breed_field, species=species_field)
+        breed = self.breed_field
+        species = breed.species_field
+        return "{} {}: {} {}".format(name, self.id, breed, species)
 
     @property
     def medical_record(self):
