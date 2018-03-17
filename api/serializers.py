@@ -36,6 +36,8 @@ class SpeciesSerializer(serializers.ModelSerializer):
 
 
 class BreedSerializer(serializers.ModelSerializer):
+    species = serializers.ReadOnlyField(source='species_field.id')
+
     class Meta:
         model = Breed
-        fields = '__all__'
+        exclude = ['species_field']
