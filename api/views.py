@@ -3,7 +3,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 
 from api import serializers
-from api.filters import AnimalFilterSet
+from api.filters import AnimalFilterSet, BreedFilterSet
 from api.models import Animal, Entity, MedicalRecord, Species, Breed
 
 
@@ -38,4 +38,4 @@ class BreedViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = serializers.BreedSerializer
     permission_classes = [AllowAny]
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('name', 'species_field')
+    filter_class = BreedFilterSet

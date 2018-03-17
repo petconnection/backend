@@ -1,5 +1,5 @@
 from django_filters.rest_framework import FilterSet, NumberFilter, BooleanFilter
-from api.models import Animal
+from api.models import Animal, Breed
 
 
 class AnimalFilterSet(FilterSet):
@@ -16,3 +16,11 @@ class AnimalFilterSet(FilterSet):
     class Meta:
         model = Animal
         fields = ('entity', 'size', 'sex')
+
+
+class BreedFilterSet(FilterSet):
+    species = NumberFilter(name='species_field')
+
+    class Meta:
+        model = Breed
+        fields = ('name', )
