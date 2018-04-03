@@ -3,14 +3,11 @@
 {% block main %}
 <main class="mdl-layout__content mdl-color--grey-100">
   <div class="mdl-grid demo-content">
-      
+
       {% for animal in animals %}
       {% include 'includes/animal.html' with animal=animal %}
       {% endfor %}
-      
-      {% include 'forms/animal.html' %}
-      
+
   </div>
 </main>
 {% endblock %}
-

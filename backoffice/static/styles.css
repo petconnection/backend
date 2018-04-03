@@ -218,11 +218,15 @@ _:-ms-input-placeholder, :root .demo-graph {
 /* animal cards */
 .mdl-card__title {
   color: #fff;
+}
+
+.mdl-card__title.mld-card--expand {
   height: 176px;
 }
 
 .mdl-card__menu {
   color: #fff;
+}
 
 #login_form {
     margin-left: 40%;

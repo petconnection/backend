@@ -1,128 +1,153 @@
+{% extends "layout.html" %}
 
-<div class="demo-cards mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-  <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-    <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
-      <h2 class="mdl-card__title-text">Add animal</h2>
-    </div>
-    <form method="POST">
+{% block main %}
+<main class="mdl-layout__content mdl-color--grey-100">
+
+  {% if errors %}
+  {{ errors }}
+  {% endif %}
+
+  <form method="POST" class="mdl-grid demo-content">
     {% csrf_token %}
+
+    <div class="mdl-cell mdl-cell--4-col">
+      <div class="mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+          <h2 class="mdl-card__title-text">Basic</h2>
+        </div>
         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <ul class="mdl-list">
-                    {% for sp in species %}
-                    <li class="mdl-list__item">
-                      <span class="mdl-list__item-primary-content">
-                          {{ sp|title }}
-                      </span>
-                      <span class="mdl-list__item-secondary-action">
-                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="animal-{{ forloop.counter }}">
-                          <input type="radio" name="species" id="animal-{{ forloop.counter }}" class="mdl-radio__button" value="{{ sp.id }}">
-                        </label>
-                      </span>
-                    </li>
-                    {% endfor %}
-                    <hr>
-                    <li class="mdl-list__item">
-                      <span class="mdl-list__item-primary-content">
-                          Male
-                      </span>
-                      <span class="mdl-list__item-secondary-action">
-                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="male">
-                          <input type="radio" name="sex" id="male" class="mdl-radio__button" value="M">
-                        </label>
-                      </span>
-                    </li>
-                    <li class="mdl-list__item">
-                      <span class="mdl-list__item-primary-content">
-                          Female
-                      </span>
-                      <span class="mdl-list__item-secondary-action">
-                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="female">
-                          <input type="radio" name="sex" id="female" class="mdl-radio__button" value="F">
-                        </label>
-                      </span>
-                    </li>
-                </ul>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <ul class="mdl-list">
-                    <li class="mdl-list__item">
-                      <span class="mdl-list__item-primary-content">
-                          Small
-                      </span>
-                      <span class="mdl-list__item-secondary-action">
-                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="small">
-                          <input type="radio" name="size" id="small" class="mdl-radio__button" value="S">
-                        </label>
-                      </span>
-                    </li>
-                    <li class="mdl-list__item">
-                      <span class="mdl-list__item-primary-content">
-                          Medium
-                      </span>
-                      <span class="mdl-list__item-secondary-action">
-                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="medium">
-                          <input type="radio" name="size" id="medium" class="mdl-radio__button" value="M">
-                        </label>
-                      </span>
-                    </li>
-                    <li class="mdl-list__item">
-                      <span class="mdl-list__item-primary-content">
-                          Big
-                      </span>
-                      <span class="mdl-list__item-secondary-action">
-                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="big">
-                          <input type="radio" name="size" id="big" class="mdl-radio__button" value="B">
-                        </label>
-                      </span>
-                    </li>
-                </ul>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="name" name="name">
-              <label class="mdl-textfield__label" for="name">Name</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows= "3" id="bio" name="bio"></textarea>
-                <label class="mdl-textfield__label" for="bio">Bio</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="breed" name="breed">
-              <label class="mdl-textfield__label" for="breed">Breed</label>
-            </div>
-            
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="vaccines" name="vaccines">
-              <label class="mdl-textfield__label" for="vaccines">Vaccines</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <ul class="mdl-list">
-                    <li class="mdl-list__item">
-                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="castrated">
-                            <input type="checkbox" id="castrated" class="mdl-checkbox__input" name="is-castrated">
-                            <span class="mdl-checkbox__label">Castrated</span>
-                          </label>
-                    </li>
-                    <li class="mdl-list__item">
-                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="chip">
-                            <input type="checkbox" id="chip" class="mdl-checkbox__input" name="has-chip">
-                            <span class="mdl-checkbox__label">Chip</span>
-                          </label>
-                    </li>
-                </ul>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows= "3" id="comments" name="comments"></textarea>
-                <label class="mdl-textfield__label" for="comments">Comments</label>
-            </div>
-        
-        </div>
-        <div class="mdl-card__actions mdl-card--border">
-            <button type="button submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Submit</button>
-            <button type="button" class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect close">Cancel</button>
-        </div>
-    </form>
-  </div>
-</div>
 
+          <div class="mdl-textfield mdl-js-textfield">
+            <ul class="mdl-list">
+              {% for sp in species %}
+              <li class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                  {{ sp|title }}
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="animal-{{ forloop.counter }}">
+                    <input type="radio" name="species" id="animal-{{ forloop.counter }}" class="mdl-radio__button" value="{{ sp.id }}">
+                  </label>
+                </span>
+              </li>
+              {% endfor %}
+              <hr>
+              <li class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                  Male
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="male">
+                    <input type="radio" name="sex" id="male" class="mdl-radio__button" value="M">
+                  </label>
+                </span>
+              </li>
+              <li class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                  Female
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="female">
+                    <input type="radio" name="sex" id="female" class="mdl-radio__button" value="F">
+                  </label>
+                </span>
+              </li>
+            </ul>
+            <ul class="mdl-list">
+              <li class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                  Small
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="small">
+                    <input type="radio" name="size" id="small" class="mdl-radio__button" value="S">
+                  </label>
+                </span>
+              </li>
+              <li class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                  Medium
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="medium">
+                    <input type="radio" name="size" id="medium" class="mdl-radio__button" value="M">
+                  </label>
+                </span>
+              </li>
+              <li class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                  Big
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="big">
+                    <input type="radio" name="size" id="big" class="mdl-radio__button" value="B">
+                  </label>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="mdl-cell mdl-cell--4-col">
+      <div class="mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title mdl-card--expand mdl-color--orange-300">
+          <h2 class="mdl-card__title-text">Detailed</h2>
+        </div>
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="breed" name="breed">
+            <label class="mdl-textfield__label" for="breed">Breed</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="name" name="name">
+            <label class="mdl-textfield__label" for="name">Name</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <textarea class="mdl-textfield__input" type="text" rows= "13" id="bio" name="bio"></textarea>
+            <label class="mdl-textfield__label" for="bio">Bio</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdl-cell mdl-cell--4-col">
+      <div class="mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title mdl-color--red-300">
+          <h2 class="mdl-card__title-text">Medical Information</h2>
+        </div>
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="vaccines" name="vaccines">
+            <label class="mdl-textfield__label" for="vaccines">Vaccines</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <ul class="mdl-list">
+              <li class="mdl-list__item">
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="castrated">
+                  <input type="checkbox" id="castrated" class="mdl-checkbox__input" name="is-castrated">
+                  <span class="mdl-checkbox__label">Castrated</span>
+                </label>
+              </li>
+              <li class="mdl-list__item">
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="chip">
+                  <input type="checkbox" id="chip" class="mdl-checkbox__input" name="has-chip">
+                  <span class="mdl-checkbox__label">Chip</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <textarea class="mdl-textfield__input" type="text" rows= "6" id="comments" name="comments"></textarea>
+            <label class="mdl-textfield__label" for="comments">Comments</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+</main>
+
+{% endblock %}
