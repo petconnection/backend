@@ -17,21 +17,18 @@
         </div>
         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
 
-          <div class="mdl-textfield mdl-js-textfield">
-            <ul class="mdl-list">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+            <input type="text" value="" class="mdl-textfield__input" id="species" readonly>
+            <input type="hidden" value="" name="species">
+            <label for="species" class="mdl-textfield__label">Species</label>
+            <ul for="species" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
               {% for sp in species %}
-              <li class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                  {{ sp|title }}
-                </span>
-                <span class="mdl-list__item-secondary-action">
-                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="animal-{{ forloop.counter }}">
-                    <input type="radio" name="species" id="animal-{{ forloop.counter }}" class="mdl-radio__button" value="{{ sp.id }}">
-                  </label>
-                </span>
-              </li>
+              <li class="species mdl-menu__item" data-val="{{ sp.id }}">{{ sp|title }}</li>
               {% endfor %}
-              <hr>
+            </ul>
+          </div>
+
+            <ul class="mdl-list">
               <li class="mdl-list__item">
                 <span class="mdl-list__item-primary-content">
                   Male
@@ -85,7 +82,7 @@
                 </span>
               </li>
             </ul>
-          </div>
+            
         </div>
       </div>
     </div>
