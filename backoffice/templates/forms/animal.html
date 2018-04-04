@@ -4,7 +4,6 @@
 <main class="mdl-layout__content mdl-color--grey-100">
 
 
-
   <form method="POST" class="mdl-grid demo-content">
     {% csrf_token %}
 
@@ -29,8 +28,8 @@
         {% endif %}
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-                <input type="text" value="" class="mdl-textfield__input" id="species" readonly>
-                <input type="hidden" value="" name="species">
+                <input type="text" value="{{ animal.species|title }}" class="mdl-textfield__input" id="species" readonly>
+                <input type="hidden" value="{{ animal.species.id }}" name="species">
                 <label for="species" class="mdl-textfield__label">Species</label>
                 <ul for="species" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
                   {% for sp in species %}
@@ -46,7 +45,8 @@
                   </span>
                   <span class="mdl-list__item-secondary-action">
                     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="male">
-                      <input type="radio" name="sex" id="male" class="mdl-radio__button" value="M">
+                      <input type="radio" name="sex" id="male" class="mdl-radio__button" value="M"
+                      {% if animal.sex == 'M' %}checked{% endif %}>
                     </label>
                   </span>
                 </li>
@@ -56,7 +56,8 @@
                   </span>
                   <span class="mdl-list__item-secondary-action">
                     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="female">
-                      <input type="radio" name="sex" id="female" class="mdl-radio__button" value="F">
+                      <input type="radio" name="sex" id="female" class="mdl-radio__button" value="F"
+                      {% if animal.sex == 'F' %}checked{% endif %}>
                     </label>
                   </span>
                 </li>
@@ -68,7 +69,8 @@
                   </span>
                   <span class="mdl-list__item-secondary-action">
                     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="small">
-                      <input type="radio" name="size" id="small" class="mdl-radio__button" value="S">
+                      <input type="radio" name="size" id="small" class="mdl-radio__button" value="S"
+                      {% if animal.size == 'S' %}checked{% endif %}>
                     </label>
                   </span>
                 </li>
@@ -78,7 +80,8 @@
                   </span>
                   <span class="mdl-list__item-secondary-action">
                     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="medium">
-                      <input type="radio" name="size" id="medium" class="mdl-radio__button" value="M">
+                      <input type="radio" name="size" id="medium" class="mdl-radio__button" value="M"
+                      {% if animal.size == 'M' %}checked{% endif %}>
                     </label>
                   </span>
                 </li>
@@ -88,7 +91,8 @@
                   </span>
                   <span class="mdl-list__item-secondary-action">
                     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="big">
-                      <input type="radio" name="size" id="big" class="mdl-radio__button" value="B">
+                      <input type="radio" name="size" id="big" class="mdl-radio__button" value="B"
+                      {% if animal.size == 'B' %}checked{% endif %}>
                     </label>
                   </span>
                 </li>
@@ -105,15 +109,15 @@
             </div>
             <div class="mdl-card__supporting-text mdl-color-text--grey-600">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="breed" name="breed">
+                <input class="mdl-textfield__input" type="text" id="breed" name="breed" value="{{ animal.breed_field }}">
                 <label class="mdl-textfield__label" for="breed">Breed</label>
               </div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="name" name="name">
+                <input class="mdl-textfield__input" type="text" id="name" name="name" value="{{ animal.name }}">
                 <label class="mdl-textfield__label" for="name">Name</label>
               </div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows= "13" id="bio" name="bio"></textarea>
+                <textarea class="mdl-textfield__input" type="text" rows="13" id="bio" name="bio">{{ animal.bio }}</textarea>
                 <label class="mdl-textfield__label" for="bio">Bio</label>
               </div>
             </div>
@@ -127,27 +131,29 @@
             </div>
             <div class="mdl-card__supporting-text mdl-color-text--grey-600">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="vaccines" name="vaccines">
+                <input class="mdl-textfield__input" type="text" id="vaccines" name="vaccines"
+                  value="{{ animal.medical_record.vaccines }}">
                 <label class="mdl-textfield__label" for="vaccines">Vaccines</label>
-              </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+
                 <ul class="mdl-list">
                   <li class="mdl-list__item">
                     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="castrated">
-                      <input type="checkbox" id="castrated" class="mdl-checkbox__input" name="is-castrated">
+                      <input type="checkbox" id="castrated" class="mdl-checkbox__input" name="is-castrated"
+                        {% if animal.medical_record.castrated %} checked {% endif %}>
                       <span class="mdl-checkbox__label">Castrated</span>
                     </label>
                   </li>
                   <li class="mdl-list__item">
                     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="chip">
-                      <input type="checkbox" id="chip" class="mdl-checkbox__input" name="has-chip">
+                      <input type="checkbox" id="chip" class="mdl-checkbox__input" name="has-chip"
+                      {% if animal.medical_record.chip %} checked {% endif %}>
                       <span class="mdl-checkbox__label">Chip</span>
                     </label>
                   </li>
                 </ul>
               </div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows= "6" id="comments" name="comments"></textarea>
+                <textarea class="mdl-textfield__input" type="text" rows="8" id="comments" name="comments">{{ animal.medical_record.comments }}</textarea>
                 <label class="mdl-textfield__label" for="comments">Comments</label>
               </div>
             </div>

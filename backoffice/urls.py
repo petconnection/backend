@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
     url(r'^$', views.home, name='home'),
     url(r'^add$', views.animal, name='add'),
+    url('^update/(?P<animal_id>[\w-]+)$', views.animal, name='update'),
 ]
