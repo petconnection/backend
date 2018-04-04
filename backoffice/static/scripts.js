@@ -26,4 +26,16 @@ $(document).ready(function(){
     species_text.closest('.getmdl-select').addClass('is-focused');
     species_text.val(item.text());
   })
+
+
+  //asign semi-random color to a card
+  var colors = ['teal', 'pink', 'purple', 'deep-purpe', 'indigo', 'blue', 'light-blue',
+                'cyan', 'red', 'green', 'light-green', 'lime', 'yellow',
+                'amber', 'orange', 'deep-orange', 'brown', 'grey', 'blue-grey'];
+
+  var card = $(".demo-updates").find('.mdl-card__title');
+  card.each(function(){
+    var name = $(this).find('.mdl-card__title-text').text();
+    $(this).addClass('mdl-color--' + colors[name.length % colors.length] + '-300');
+  });
 });
