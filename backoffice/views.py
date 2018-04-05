@@ -34,7 +34,7 @@ def animal(request, animal_id=None):
                 }
             )
 
-            md_record, created = models.MedicalRecord.objects.update_or_create(
+            models.MedicalRecord.objects.update_or_create(
                 animal = animal,
                 defaults = {
                     'vaccines': request.POST.get('vaccines'),
