@@ -1,6 +1,8 @@
 from django.contrib.auth import views as auth_views
 from django.conf.urls import url
 from backoffice import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 login_kwargs = {
@@ -15,3 +17,6 @@ urlpatterns = [
     url(r'^add$', views.animal, name='add'),
     url('^update/(?P<animal_id>[\w-]+)$', views.animal, name='update'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

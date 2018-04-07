@@ -227,3 +227,12 @@ _:-ms-input-placeholder, :root .demo-graph {
 .mdl-card__menu {
   color: #fff;
 }
+
+.file_input {
+  float: left;
+  margin-top: 20px;
+}
+
+.none {
+  display: none;
+}

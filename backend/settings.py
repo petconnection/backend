@@ -124,8 +124,8 @@ ENV_PATH = os.path.abspath(os.path.dirname(__file__))
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(ENV_PATH, 'static/')
 
-MEDIA_ROOT = os.path.join(ENV_PATH, 'media/')
-MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(ENV_PATH, 'media')
+MEDIA_URL = '/media/'
 
 # AUTH settings (custom)
 

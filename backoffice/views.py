@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 import api.models as models
 from .forms import AnimalForm
+from django.core.files.storage import FileSystemStorage
 
 
 @login_required(login_url='login')
@@ -14,6 +15,9 @@ def animal(request, animal_id=None):
     if request.method == 'POST':
         form = AnimalForm(request.POST)
         if form.is_valid():
+
+            weight = request.POST.get('weight')
+
             r_breed = request.POST.get('breed')
             species = models.Species.objects.get(pk=request.POST['species'])
             if r_breed:
@@ -21,16 +25,23 @@ def animal(request, animal_id=None):
             else:
                 breed = models.Breed.objects.get(name='Unknown', species_field=species)
 
-            animal, created = models.Animal.objects.update_or_create(
+            animal_pic, filename = request.FILES.get('file'), None
+            if animal_pic:
+                fs = FileSystemStorage()
+                filename = fs.save(animal_pic.name, animal_pic)
+                uploaded_file_url = fs.url(filename)
+
+            animal, _ = models.Animal.objects.update_or_create(
                 id = context.get('animal_id'),
                 defaults = {
                     'name': request.POST.get('name'),
                     'entity': models.Entity.objects.get(user=request.user),
-                    'weight': request.POST.get('weight'),
+                    'weight': weight if weight else None,
                     'size': form.cleaned_data['size'],
                     'sex': form.cleaned_data['sex'],
                     'bio': form.cleaned_data['bio'],
-                    'breed_field': breed
+                    'breed_field': breed,
+                    'pic': filename
                 }
             )
 
