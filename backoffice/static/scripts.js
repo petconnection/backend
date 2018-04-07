@@ -45,8 +45,13 @@ $(document).ready(function(){
 
   var card = $(".demo-updates").find('.mdl-card__title');
   card.each(function(){
+    var pic = $(this).find('input[name=animal-pic]');
+    if (pic.val()){
+      $(this).css('min-height', '200px');
+      $(this).css('background-image', 'url('+pic.val()+')');
+    }
     var name = $(this).find('.mdl-card__title-text').text();
     $(this).addClass('mdl-color--' + colors[name.length % colors.length] + '-300');
   });
-  
+
 });
