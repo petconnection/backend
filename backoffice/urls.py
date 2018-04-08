@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^add$', views.animal, name='add'),
     url('^update/(?P<animal_id>[\w-]+)$', views.animal, name='update'),
+    url('^delete/(?P<animal_id>[\w-]+)$', views.delete, name='delete'),
 ]
 
 if settings.DEBUG:

@@ -18,6 +18,13 @@ $(document).ready(function(){
     frm.submit();
   });
 
+  $('#delete').click(function(e){
+    e.preventDefault();
+    if (confirm("Do you want to delete this animal?")){
+        window.location.href = $(this).attr('href');
+    }
+  });
+
   // emulate floating label effect on species text
   var species_text = $("#species");
   $('.species.mdl-menu__item').click(function() {

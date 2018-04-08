@@ -6,6 +6,12 @@ from django.core.files.storage import FileSystemStorage
 
 
 @login_required(login_url='login')
+def delete(request, animal_id):
+    models.Animal.objects.get(pk=animal_id).delete()
+    return redirect(home)
+
+
+@login_required(login_url='login')
 def animal(request, animal_id=None):
     context = {'species': models.Species.objects.all()}
     if animal_id:
