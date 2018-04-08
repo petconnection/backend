@@ -22,12 +22,14 @@
         </div>
     </a>
     {% else %}
-	<a href="/backoffice/delete/{{ animal.id }}" id="delete" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+	{% if edit %}
+    <a href="/backoffice/delete/{{ animal.id }}" id="delete" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
         <i class="material-icons">delete_forever</i>
         <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="delete">
             Delete
         </div>
     </a>
+	{% endif %}
     <button id="form-clear" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
         <i class="material-icons">clear</i>
         <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="form-clear">

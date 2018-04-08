@@ -17,6 +17,7 @@ def animal(request, animal_id=None):
     if animal_id:
         context['animal_id'] = animal_id
         context['animal'] = models.Animal.objects.get(pk=animal_id)
+        context['edit'] = True
 
     if request.method == 'POST':
         form = AnimalForm(request.POST)
