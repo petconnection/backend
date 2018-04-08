@@ -125,7 +125,12 @@
                 <label class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--teal-500">
                   <i class="material-icons">photo</i>
                   <input name="file" class="none" type="file" accept="image/*" data-type='image'/>
-                  <span class="file_text">{% if animal.pic %}{{ animal.pic }}{% else %}File Upload{% endif %}</span>
+				  {% if animal.pic %}
+				  <input name="pic" class="none" type="text" value="{{ animal.pic }}">
+                  <span class="file_text">{{ animal.pic }}</span>
+				  {% else %}
+                  <span class="file_text">File Upload</span>
+				  {% endif %}
                 </label>
               </div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

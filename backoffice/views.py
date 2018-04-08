@@ -32,11 +32,10 @@ def animal(request, animal_id=None):
             else:
                 breed = models.Breed.objects.get(name='Unknown', species_field=species)
 
-            animal_pic, filename = request.FILES.get('file'), None
+            animal_pic, filename = request.FILES.get('file'), request.POST.get('pic')
             if animal_pic:
                 fs = FileSystemStorage()
                 filename = fs.save(animal_pic.name, animal_pic)
-                uploaded_file_url = fs.url(filename)
 
             animal, _ = models.Animal.objects.update_or_create(
                 id = context.get('animal_id'),
