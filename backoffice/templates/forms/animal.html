@@ -149,28 +149,28 @@
             <div class="mdl-card__supporting-text mdl-color-text--grey-600">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="vaccines" name="vaccines"
-                  value="{{ animal.medical_record.vaccines }}">
+                  value="{{ animal.medicalrecord.vaccines }}">
                 <label class="mdl-textfield__label" for="vaccines">Vaccines</label>
 
                 <ul class="mdl-list">
                   <li class="mdl-list__item">
                     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="castrated">
                       <input type="checkbox" id="castrated" class="mdl-checkbox__input" name="is-castrated"
-                        {% if animal.medical_record.castrated %} checked {% endif %}>
+                        {% if animal.medicalrecord.castrated %} checked {% endif %}>
                       <span class="mdl-checkbox__label">Castrated</span>
                     </label>
                   </li>
                   <li class="mdl-list__item">
                     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="chip">
                       <input type="checkbox" id="chip" class="mdl-checkbox__input" name="has-chip"
-                      {% if animal.medical_record.chip %} checked {% endif %}>
+                      {% if animal.medicalrecord.chip %} checked {% endif %}>
                       <span class="mdl-checkbox__label">Chip</span>
                     </label>
                   </li>
                 </ul>
               </div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="8" id="comments" name="comments">{{ animal.medical_record.comments }}</textarea>
+                <textarea class="mdl-textfield__input" type="text" rows="8" id="comments" name="comments">{{ animal.medicalrecord.comments }}</textarea>
                 <label class="mdl-textfield__label" for="comments">Comments</label>
               </div>
             </div>

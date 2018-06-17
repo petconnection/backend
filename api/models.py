@@ -46,10 +46,6 @@ class Animal(models.Model):
         breed = self.breed_field
         species = breed.species_field
         return "{} {}: {} {}".format(name, self.id, breed, species)
-
-    @property
-    def medical_record(self):
-        return MedicalRecord.objects.get(animal=self.id)
     
     @property
     def species(self):

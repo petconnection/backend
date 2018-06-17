@@ -14,9 +14,9 @@
       {{ animal.bio }}
     </div>
     {% endif %}
-    {% if animal.medical_record.comments %}
+    {% if animal.medicalrecord.comments %}
     <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-      {{ animal.medical_record.comments }}
+      {{ animal.medicalrecord.comments }}
     </div>
     {% endif %}
 
@@ -31,7 +31,7 @@
             </div>
         </a>
 
-        {% if animal.medical_record.chip %}
+        {% if animal.medicalrecord.chip %}
         <a id="{{ animal.id }}-chip" class="mdl-button mdl-button--icon">
           <i class="material-icons">memory</i>
           <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="{{ animal.id }}-chip">
@@ -40,7 +40,7 @@
         </a>
         {% endif %}
 
-        {% if  animal.medical_record.vaccinated %}
+        {% if  animal.medicalrecord.vaccinated %}
         <a id="{{ animal.id }}-vaccinated" class="mdl-button mdl-button--icon">
           <i class="material-icons">verified_user</i>
           <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="{{ animal.id }}-vaccinated">
@@ -49,7 +49,7 @@
         </a>
         {% endif %}
 
-        {% if animal.medical_record.castrated %}
+        {% if animal.medicalrecord.castrated %}
         <a id="{{ animal.id }}-castrated" class="mdl-button mdl-button--icon">
           <i class="material-icons">clear</i>
           <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="{{ animal.id }}-castrated">
