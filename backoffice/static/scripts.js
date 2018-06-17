@@ -46,7 +46,7 @@ $(document).ready(function(){
 
 
   //asign semi-random color to a card
-  var colors = ['teal', 'pink', 'purple', 'deep-purpe', 'indigo', 'blue', 'light-blue',
+  var colors = ['teal', 'pink', 'purple', 'deep-purple', 'indigo', 'blue', 'light-blue',
                 'cyan', 'red', 'green', 'light-green', 'lime', 'yellow',
                 'amber', 'orange', 'deep-orange', 'brown', 'grey', 'blue-grey'];
 
