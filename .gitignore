@@ -105,3 +105,6 @@ ENV/
 
 #Intellij Pycharm
 .idea/
+
+#media folders (pictures)
+*media/

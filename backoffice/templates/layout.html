@@ -5,16 +5,14 @@
 <html>
 
     {% include "includes/head.html" %}
-    
-    <body class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-        
+
+    <body class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
         {% if user.is_authenticated %}
             {% include "includes/header.html" %}
-            {% include "includes/nav.html" %}
         {% endif %}
-        
+
         {% block main %}{% endblock %}
-        
+
     </body>
 </html>
-
