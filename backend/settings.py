@@ -37,9 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'django_filters',
     'api',
     'backoffice'
 ]
+
+REST_FRAMEWORK = {
+        'DEFAULT_PERMISSION_CLASSES': [
+            'rest_framework.permissions.IsAdminUser',
+            ],
+        'DEFAULT_PAGINATION_CLASS': 'api.pagination.CustomPagination',
+        'PAGE_SIZE': 25,
+        'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -124,8 +135,8 @@ ENV_PATH = os.path.abspath(os.path.dirname(__file__))
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(ENV_PATH, 'static/')
 
-MEDIA_ROOT = os.path.join(ENV_PATH, 'media/')
-MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(ENV_PATH, 'media')
+MEDIA_URL = '/media/'
 
 # AUTH settings (custom)
 

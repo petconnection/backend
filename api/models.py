@@ -1,24 +1,28 @@
 from django.db import models
 
 
-class BaseClass(models.Model):
+class Entity(models.Model):
+    name = models.CharField(max_length=30)
+    location = models.CharField(max_length=120)
+    user = models.ForeignKey('auth.User')
+
+    def __str__(self):
+        return self.name
+
+
+class Species(models.Model):
     name = models.CharField(max_length=30)
 
     def __str__(self):
         return self.name
 
 
-class Entity(BaseClass):
-    location = models.CharField(max_length=120)
-    user = models.ForeignKey('auth.User')
-
-
-class Species(BaseClass):
-    pass
-
-
-class Breed(BaseClass):
+class Breed(models.Model):
+    name = models.CharField(max_length=30)
     species_field = models.ForeignKey(Species, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 class Animal(models.Model):
@@ -41,12 +45,22 @@ class Animal(models.Model):
     pic = models.ImageField(null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
 
+    def medical_record(self):
+        try:
+            return MedicalRecord.objects.get(animal=self.id)
+        except MedicalRecord.DoesNotExist:
+            return None
+
     def __str__(self):
         name = self.name if self.name else ""
-        breed_field = self.breed_field
-        species_field = breed_field.species_field
-        return "{name} {animal_id}: {breed} {species}".format(name=name, animal_id=self.id, breed=breed_field, species=species_field)
-
+        breed = self.breed_field
+        species = breed.species_field
+        return "{} {}: {} {}".format(name, self.id, breed, species)
+    
+    @property
+    def species(self):
+        return self.breed_field.species_field
+        
 
 class MedicalRecord(models.Model):
     animal = models.OneToOneField(Animal, on_delete=models.CASCADE, primary_key=True)
@@ -57,5 +71,3 @@ class MedicalRecord(models.Model):
 
     def __str__(self):
         return "{}'s medical record".format(self.animal.name)
-
-
