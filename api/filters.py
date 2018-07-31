@@ -3,7 +3,7 @@ from api.models import Animal, Breed
 
 
 class AnimalFilterSet(FilterSet):
-    breed = NumberFilter(name='breed_field')
+    breed = NumberFilter(field_name='breed_field')
     is_castrated = BooleanFilter(method='is_castrated_filter')
     has_chip = BooleanFilter(method='has_chip_filter')
 
@@ -19,7 +19,7 @@ class AnimalFilterSet(FilterSet):
 
 
 class BreedFilterSet(FilterSet):
-    species = NumberFilter(name='species_field')
+    species = NumberFilter(field_name='species_field')
 
     class Meta:
         model = Breed
