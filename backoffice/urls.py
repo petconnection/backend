@@ -1,5 +1,5 @@
 from django.contrib.auth import views as auth_views
-from django.conf.urls import url
+from django.urls import path
 from backoffice import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -11,12 +11,12 @@ login_kwargs = {
 }
 
 urlpatterns = [
-    url(r'^login/$', auth_views.login, login_kwargs,  name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
-    url(r'^$', views.home, name='home'),
-    url(r'^add$', views.animal, name='add'),
-    url('^update/(?P<animal_id>[\w-]+)$', views.animal, name='update'),
-    url('^delete/(?P<animal_id>[\w-]+)$', views.delete, name='delete'),
+    path('login/', auth_views.login, login_kwargs,  name='login'),
+    path('logout/', auth_views.logout, {'next_page': 'login'}, name='logout'),
+    path('', views.home, name='home'),
+    path('add', views.animal, name='add'),
+    path('update/<int:animal_id>/', views.animal, name='update'),
+    path('delete/<int:animal_id>/', views.delete, name='delete'),
 ]
 
 if settings.DEBUG:
