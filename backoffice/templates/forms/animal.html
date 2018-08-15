@@ -122,15 +122,23 @@
                 <span class="mdl-textfield__error">Input must be a number with 2 digit precission</span>
               </div>
               <div class="mdl-textfield mdl-js-textfield file_input">
+                {% if animal.pic %}
+                <img id="animal-pic" width="120" height="120" src="/media/{{ animal.pic }}">
+                {% else %}
+                <img id="animal-pic" width="120" height="120" src="" class="hidden">
+                {% endif %}
+              </div>
+              <div class="mdl-textfield mdl-js-textfield file_input">
                 <label class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--teal-500">
                   <i class="material-icons">photo</i>
                   <input name="file" class="none" type="file" accept="image/*" data-type='image'/>
-				  {% if animal.pic %}
-				  <input name="pic" class="none" type="text" value="{{ animal.pic }}">
+				          {% if animal.pic %}
+                  <!-- This is just for text purposes -->
+				          <input name="pic" class="none" type="text" value="{{ animal.pic }}">
                   <span class="file_text">{{ animal.pic }}</span>
-				  {% else %}
+				          {% else %}
                   <span class="file_text">File Upload</span>
-				  {% endif %}
+				          {% endif %}
                 </label>
               </div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
