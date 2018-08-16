@@ -235,3 +235,9 @@ _:-ms-input-placeholder, :root .demo-graph {
 .none {
   display: none;
 }
+
+.vertical-line {
+  border-left: 1px solid grey;
+  height: 20px;
+  margin: 0 5px 0 5px;
+}
