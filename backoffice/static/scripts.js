@@ -25,12 +25,28 @@ $(document).ready(function(){
   })
 
   // image input
+  function readURL(input) {
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      var animal_pic = $('#animal-pic');
+      reader.onload = function(e) {
+        animal_pic.attr('src', e.target.result);
+        animal_pic.removeClass('hidden');
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
   var file_input = $("input[name=file]");
   var file_text = $(".file_text");
 
   file_input.change(function(){
     var filename = $(this).val().split('fakepath\\')[1];
     file_text.text(filename);
+    readURL(this);
   });
 
 
