@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<main class="mdl-layout__content mdl-color--grey-100">
+<div class="mdl-grid demo-content">
+
+  <form method="POST" class="mdl-grid demo-content">
+	{% csrf_token %}
+
+	<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+	  <div class="mdl-card__supporting-text">
+		  <h2 class="mdl-card__title-text">Edit {{ entity.name }}</h2><br>
+		{{ form.as_p }}
+	  </div>
+	</div>
+  </form>
+
+</div>
+</main>
+  {% endblock %}
