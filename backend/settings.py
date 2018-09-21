@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'api',
-    'backoffice',
-    'register'
+    'backoffice'
 ]
 
 REST_FRAMEWORK = {
