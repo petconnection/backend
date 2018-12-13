@@ -11,8 +11,8 @@ login_kwargs = {
 }
 
 urlpatterns = [
-    path('login/', auth_views.login, login_kwargs,  name='login'),
-    path('logout/', auth_views.logout, {'next_page': 'login'}, name='logout'),
+    path('login/', auth_views.LoginView.as_view(**login_kwargs), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('', views.home, name='home'),
     path('add', views.animal, name='add'),
     path('update/<int:animal_id>/', views.animal, name='update'),
