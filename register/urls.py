@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('<str:token>/', views.register, name='register'),
+    path('<str:code>/', views.register, name='register'),
 ]
 
 if settings.DEBUG:

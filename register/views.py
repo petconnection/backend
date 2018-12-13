@@ -5,7 +5,14 @@ from backoffice.forms import EntityForm
 from register.models import Token
 
 
-def register(request, token=None):
+def register(request, code):
+
+    token = Token.objects.filter(code=code).first()
+    if token and token.is_valid():
+        token.consume()
+    else:
+        return render(request, 'error.html')
+
     if request.method == 'POST':
         user_form = UserCreationForm(request.POST, prefix='user_form')
         entity_form = EntityForm(request.POST, prefix='entity_form')
@@ -16,12 +23,8 @@ def register(request, token=None):
             entity.save()
             return redirect('/')
     else:
-        token = Token.objects.filter(code=token).first()
-        if token and token.is_valid():
-            user_form = UserCreationForm(prefix='user_form')
-            entity_form = EntityForm(prefix='entity_form')
-        else:
-            return render(request, 'error.html')
+        user_form = UserCreationForm(prefix='user_form')
+        entity_form = EntityForm(prefix='entity_form')
 
     forms = {'user_form': user_form, 'entity_form': entity_form}
     return render(request, 'index.html', forms)
