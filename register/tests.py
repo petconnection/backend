@@ -15,13 +15,12 @@ class RegisterTests(TestCase):
 
     def test_expired_token(self):
         token = Token()
-        token.save()
         token.expiry = timezone.now() - timezone.timedelta(hours=1)
         token.save()
 
         client = Client()
         response = client.get('/register/' + token.code + "/")
-        self.assertEqual(response.status_code, 401)
+        self.assertTemplateUsed(response, 'error.html')
 
     def test_use_same_token_twice(self):
         token = Token()
@@ -57,6 +56,6 @@ class RegisterTests(TestCase):
 
         client = Client()
         response = client.post('/register/abc/', form_data)
-        print(response.content)
         entity_set = Entity.objects.filter(name=form_data["entity_form-name"])
         self.assertEqual(len(entity_set), 0, "Entity registered using an unexisting token")
+
