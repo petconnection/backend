@@ -43,6 +43,7 @@ class RegisterTests(TestCase):
         form_data["entity_form-name"] += "_2"
 
         client.post('/register/' + token.code + "/", form_data)
+        entity_set = Entity.objects.filter(name=form_data["entity_form-name"])
         self.assertEqual(len(entity_set), 0, "Entity registered using an already used token")
 
     def test_register_user_using_invalid_token(self):
@@ -55,7 +56,7 @@ class RegisterTests(TestCase):
         }
 
         client = Client()
-        response = client.post('/register/abc/', form_data)
+        client.post('/register/abc/', form_data)
         entity_set = Entity.objects.filter(name=form_data["entity_form-name"])
         self.assertEqual(len(entity_set), 0, "Entity registered using an unexisting token")
 
