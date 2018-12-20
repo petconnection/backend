@@ -23,6 +23,7 @@ class Token(models.Model):
     def consume(self):
         if self.expiry:
             self.expiry -= timedelta(days=1)
+            self.save()
 
 
     def __str__(self):
