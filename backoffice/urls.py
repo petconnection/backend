@@ -17,6 +17,7 @@ urlpatterns = [
     path('add', views.animal, name='add'),
     path('update/<int:animal_id>/', views.animal, name='update'),
     path('delete/<int:animal_id>/', views.delete, name='delete'),
+    path('entity/', views.entity, name='entity'),
 ]
 
 if settings.DEBUG:

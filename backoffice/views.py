@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 import api.models as models
-from .forms import AnimalForm
+from .forms import AnimalForm, EntityForm
 from django.core.files.storage import FileSystemStorage
 
 
@@ -71,11 +71,30 @@ def animal(request, animal_id=None):
 
 
 @login_required(login_url='login')
+def entity(request):
+    entity = models.Entity.objects.get(user=request.user)
+    form = EntityForm({'name': entity.name, 'location': entity.location})
+    if request.method == 'POST':
+        form = EntityForm(request.POST)
+        if form.is_valid():
+            entity.name = request.POST.get('name')
+            entity.location = request.POST.get('location')
+            entity.save()
+        return redirect(home)
+
+    context = {'form': form, 'entity': entity}
+    return render(request, 'forms/entity.html', context)
+
+
+@login_required(login_url='login')
 def home(request):
     context = {}
     user_entity = models.Entity.objects.get(user=request.user)
+    context['entity_name'] = user_entity.name
     context['animals'] = models.Animal.objects.filter(entity=user_entity)
     context['species'] = models.Species.objects.all()
     context['home'] = True
 
     return render(request, 'home.html', context)
+
+

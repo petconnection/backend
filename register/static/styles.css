@@ -241,3 +241,13 @@ _:-ms-input-placeholder, :root .demo-graph {
   height: 20px;
   margin: 0 5px 0 5px;
 }
+
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+  color: rgb(117, 117, 117)
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}

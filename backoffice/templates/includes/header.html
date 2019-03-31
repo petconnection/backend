@@ -21,15 +21,21 @@
             Add
         </div>
     </a>
-    {% else %}
-	{% if edit %}
-    <a href="/backoffice/delete/{{ animal.id }}" id="delete" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons">delete_forever</i>
-        <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="delete">
-            Delete
-        </div>
+	<a id="entity" href="{% url 'entity' %}" class="show-modal mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons">edit</i>
+      <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="entity">
+		  Edit {{ entity_name }}
+      </div>
     </a>
-	{% endif %}
+    {% else %}
+		{% if edit %}
+		<a href="/backoffice/delete/{{ animal.id }}" id="delete" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+			<i class="material-icons">delete_forever</i>
+			<div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="delete">
+				Delete
+			</div>
+		</a>
+		{% endif %}
     <button id="form-submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
         <i class="material-icons">done</i>
         <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="form-submit">
@@ -37,5 +43,15 @@
         </div>
     </button>
     {% endif %}
+
+    <div class="vertical-line"></div>
+
+    <a id="logout" href="{% url 'logout' %}" class="show-modal mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons">logout</i>
+      <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="logout">
+          Logout
+      </div>
+    </a>
+    
   </div>
 </header>
